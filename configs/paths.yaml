@@ -1,0 +1,4 @@
+data_paths:
+  flights_data: data/raw/flights.csv
+  hotels_data: data/raw/hotels.csv
+  users_data: data/raw/users.csv
