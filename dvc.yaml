@@ -1,0 +1,18 @@
+stages:
+
+  training_pipeline:
+
+    cmd: python3 run_training_pipeline.py
+
+    deps:
+      - src/
+      - data/raw/flights.csv
+      - run_training_pipeline.py
+
+    outs:
+      - artifacts/models/
+
+    metrics:
+      - artifacts/metrics/model_metrics.json
+
+    

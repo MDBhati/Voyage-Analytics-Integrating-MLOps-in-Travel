@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voyage Analytics API</title>
+  <link rel="stylesheet" href="/static/css/home.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Voyage Analytics API</h1>
+    <p class="tagline">
+      Travel data analytics, flight price prediction, and hotel recommendations
+      — served as a production-style ML API.
+    </p>
+
+    <div class="links">
+      <a class="btn" href="/docs">Interactive API docs</a>
+      <a class="btn secondary" href="/redoc">ReDoc</a>
+      <a class="btn secondary" href="/metrics">Prometheus metrics</a>
+      <a class="btn secondary" href="/about">About (JSON)</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Project objective</h2>
+        <p>
+          Build an end-to-end analytics stack that ingests travel datasets,
+          trains models, tracks experiments, and exposes predictions through
+          APIs and dashboards.
+        </p>
+      </div>
+      <div class="card">
+        <h2>Flight price prediction</h2>
+        <p>
+          Regression model trained on historical routes. Send origin, destination,
+          flight class, agency, duration, and distance to estimate price.
+        </p>
+      </div>
+      <div class="card">
+        <h2>Hotel recommendations</h2>
+        <p>
+          Content-based similarity over hotel location and name. Available via
+          the Streamlit app using compact artifacts in <code>artifacts/models/</code>.
+        </p>
+      </div>
+      <div class="card">
+        <h2>Gender classification</h2>
+        <p>
+          Classify traveler gender from name, company, and age using a trained
+          classifier on the users dataset.
+        </p>
+      </div>
+      <div class="card">
+        <h2>MLOps capabilities</h2>
+        <ul>
+          <li>MLflow experiment tracking</li>
+          <li>Airflow training DAGs</li>
+          <li>Docker &amp; Kubernetes deployment</li>
+          <li>Drift detection &amp; structured logging</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-spaced">
+      <h2>Example: predict flight price</h2>
+      <p class="example-label">POST <code>/predict</code></p>
+      <pre>{
+  "from_location": "Recife (PE)",
+  "to_location": "Florianopolis (SC)",
+  "flightType": "firstClass",
+  "agency": "FlyingDrops",
+  "time": 1.76,
+  "distance": 676.53
+}</pre>
+    </div>
+
+    <div class="card card-spaced">
+      <h2>Example: classify gender</h2>
+      <p class="example-label">POST <code>/classify/gender</code></p>
+      <pre>{
+  "name": "Roy Braun",
+  "company": "4You",
+  "age": 21
+}</pre>
+    </div>
+
+    <footer>
+      Status: running &middot; Version 1.0.0 &middot;
+      Dashboard: <code>streamlit run streamlit_app/app.py</code>
+    </footer>
+  </div>
+</body>
+</html>

@@ -172,3 +172,15 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# MLflow experiment tracking (machine-local; do not commit)
+mlruns/
+mlflow.db
+
+# raw data
+# data/raw/
+
+# .DS_Store
+.DS_Store
+
+

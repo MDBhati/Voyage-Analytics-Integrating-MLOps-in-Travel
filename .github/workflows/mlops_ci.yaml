@@ -1,0 +1,54 @@
+name: Voyage Analytics CI Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python  
+        uses: actions/setup-python@v5
+
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ensure raw datasets
+        run: python scripts/ensure_raw_data.py
+
+      - name: Prepare MLflow store
+        run: rm -rf mlruns mlflow.db
+
+      - name: Run Training Pipeline
+        run: |
+          python run_training_pipeline.py
+          python run_gender_classification_training.py
+
+      - name: Validate API Import
+        run: |
+          python -c "from src.api.app import app"
+      
+      - name: Build Docker Image
+        run: |
+          docker build -t voyage-analytics-api .
+
+      - name: Push Docker Image
+        run: |
+          docker build -t voyage-analytics .

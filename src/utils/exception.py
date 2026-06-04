@@ -6,9 +6,9 @@ def error_message_detail(error, error_detail: sys):
     file_name = exc_tb.tb_frame.f_code.co_filename
 
     error_message = (
-        f\"Error occurred in script: [{file_name}] \"
-        f\"at line number: [{exc_tb.tb_lineno}] \"
-        f\"with error message: [{str(error)}]\"
+        f" \n Error occurred in script: [{file_name}] "
+        f" \n at line number: [{exc_tb.tb_lineno}] "
+        f" \n with error message: [{str(error)}] "
     )
 
     return error_message

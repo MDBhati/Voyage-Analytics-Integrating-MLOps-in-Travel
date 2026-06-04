@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  training_pipeline:
+    cmd: python3 run_training_pipeline.py
+    deps:
+    - path: data/raw/flights.csv
+      hash: md5
+      md5: df18a038826769e5ce870aa7934facfc
+      size: 24570411
+    - path: run_training_pipeline.py
+      hash: md5
+      md5: 2e7cf24acba0ae3e252fb9db24bf7d74
+      size: 374
+    - path: src/
+      hash: md5
+      md5: d82128e71e75593fbaf3e5970c70058b.dir
+      size: 55781
+      nfiles: 44
+    outs:
+    - path: artifacts/metrics/model_metrics.json
+      hash: md5
+      md5: 2506641dc24141c5537cbdca174be491
+      size: 276
+    - path: artifacts/models/
+      hash: md5
+      md5: 11902e0609aa4fafe11576cf1ed88571.dir
+      size: 23617344
+      nfiles: 3
